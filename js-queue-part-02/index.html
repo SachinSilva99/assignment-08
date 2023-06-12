@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>queue part 2</title>
+</head>
+<body>
+<div class="container">
+    <div class="box"></div>
+    <div class="line"></div>
+    <div class="inside-boxes">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <div class="line"></div>
+    <div class="box"></div>
+</div>
+<script src="/lib/jquery.js"></script>
+<script>
+    const colors = ['rgb(255, 0, 0)', 'rgb(0, 128, 0)', 'rgb(0, 0, 255)', 'rgb(255, 255, 0)', 'rgb(255, 192, 203)', 'rgb(128, 0, 128)'];
+    const boxElements = $('.box');
+
+    boxElements.each(function (index) {
+        const colorIndex = index % colors.length;
+        $(this).css({background: colors[colorIndex]});
+    });
+
+    function updateBoxes() {
+        const boxElements = $('.box');
+        boxElements.each(function () {
+            const currentColor = $(this).css('background-color');
+            const currentIndex = colors.indexOf(currentColor);
+            const nextIndex = (currentIndex - 1 + colors.length) % colors.length;
+            $(this).css({ background: colors[nextIndex] });
+        });
+    }
+    setInterval(updateBoxes, 500);
+</script>
+</body>
+</html>
