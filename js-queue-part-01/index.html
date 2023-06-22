@@ -43,17 +43,22 @@
     </div>
 
 </section>
-<script src="/lib/jquery.js"></script>
+<script src="../lib/jquery.js"></script>
+
 <script>
-    const queue = ['A', 'B', 'C', 'D', 'E', 'F'];
+    const queue = ['F', 'A', 'B', 'C', 'D', 'E'];
+    const h2Elements = $('.person h2');
+
     function updateH2() {
-        const h2Elements = $('.person h2');
         h2Elements.each(function () {
-            const nextIndex = (queue.indexOf($(this).text()) + 1) % queue.length;
-            $(this).text(queue[nextIndex]);
+            const currentIndex = queue.indexOf($(this).text());
+            const previousIndex = (currentIndex - 1 + queue.length) % queue.length;
+            $(this).text(queue[previousIndex]);
         });
     }
+
     setInterval(updateH2, 2000);
+
 </script>
 </body>
 </html>
